@@ -51,7 +51,3 @@ The data provides comprehensive insights into revenue trends, hospital classific
 
 This is an ongoing project that aims to explore more about rural hospitals
 
-## Current Status
-
-The project is ongoing, with plans for deeper analyses and additional insights into rural hospital finances and accessibility. The findings aim to contribute to policymaking and improve healthcare access in rural communities.
-
