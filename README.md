@@ -49,28 +49,7 @@ The data provides comprehensive insights into revenue trends, hospital classific
 
 ## Ongoing Work
 
-This is an ongoing project that aims to explore the underlying reasons behind the shift toward outpatient care in rural hospitals. Future analyses will focus on:
-- Identifying external factors influencing the outpatient revenue increase.
-- Evaluating policy and funding changes affecting rural healthcare accessibility.
-- Investigating strategies to support non-DSH hospitals and improve financial stability.
-- Expanding insights into the relationship between case mix index, patient demographics, and hospital performance.
-
----
-
-## Technologies Used
-
-- **Languages:**
-  - Python
-- **Libraries:**
-  - Pandas
-  - NumPy
-  - Matplotlib/Seaborn (for data visualization)
-- **Tools:**
-  - Jupyter Notebook
-  - GitHub for version control
-  - Excel
-
----
+This is an ongoing project that aims to explore more about rural hospitals
 
 ## Current Status
 
