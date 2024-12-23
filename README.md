@@ -24,12 +24,6 @@ This project, conducted in collaboration with Professor Glenn Melnick, analyzes 
 - **Hospital Decline and Financial Challenges:**
   - Analyzed the declining number of rural hospitals, which dropped from **79 in 1995 to 58 in 2023**, emphasizing the financial pressures faced by rural hospitals.
 
-### Skills Developed:
-- Advanced data analysis techniques for healthcare datasets.
-- Trend identification and visualization of revenue shifts over time.
-- Evaluation of hospital-level metrics such as case mix index, patient care structures, and funding classification.
-- Critical assessment of challenges in rural healthcare funding and accessibility.
-
 ---
 
 ## Dataset Information
