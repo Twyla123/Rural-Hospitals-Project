@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.content {
+    line-height: 1.6;
+    font-size: 18px;
+    color: #444;
+}
+
+p {
+    margin-bottom: 15px;
+}
+
+ul {
+    padding-left: 20px;
+    margin-bottom: 15px;
+}
+
+li {
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #555;
+}
+
+strong {
+    color: #222;
+}
+</style>
+    
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      // Load Google Charts once
+      google.charts.load('current', {packages: ['corechart', 'table']});
+      google.charts.setOnLoadCallback(drawAllCharts);
+
+      function drawAllCharts() {
+        drawBarChart();
+        drawPurchasedIPChart();
+        drawColumnChart();
+        drawLineChart();
+        drawPercentageChangeLineChart();
+        drawDataTable();
+      }
+
+      // Chart 1: Percentage Change in Healthcare Utilization (Excluding Purchased I/P Days)
+      function drawBarChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Category', 'Rural Hospitals (%)', 'Non-Rural Hospitals (%)'],
+          ['ER Visits', 30, 43],
+          ['Clinic Visits', 151, 37],
+          ['Home Health Visits', -70, -54],
+          ['Referred O/P Visits', -14, -10],
+          ['I/P Surgeries', -65, -25],
+          ['O/P Surgeries', -42, -6],
+          ['Nursery Days', -44, -48],
+          ['Nursery Discharges', -39, -40]
+        ]);
+
+        var options = {
+          title: 'Percentage Change in Healthcare Utilization (Excluding Purchased I/P Days)',
+          chartArea: {width: '70%'},
+          hAxis: {title: 'Percentage Change', minValue: -100, maxValue: 200}, 
+          vAxis: {title: 'Category'},
+          bars: 'horizontal',
+          colors: ['#1b9e77', '#d95f02']
+        };
+
+        var chart = new google.visualization.BarChart(document.getElementById('bar_chart_div'));
+        chart.draw(data, options);
+      }
+
+      // Chart 2: Purchased I/P Days
+      function drawPurchasedIPChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Category', 'Rural Hospitals (%)', 'Non-Rural Hospitals (%)'],
+          ['Purchased I/P Days', 80559, 82]
+        ]);
+
+        var options = {
+          title: 'Percentage Change in Purchased I/P Days (2002-2023)',
+          chartArea: {width: '50%'},
+          hAxis: {title: 'Percentage Change', minValue: 0},
+          vAxis: {title: 'Category'},
+          bars: 'horizontal',
+          colors: ['#1b9e77', '#d95f02']
+        };
+
+        var chart = new google.visualization.BarChart(document.getElementById('purchased_ip_chart_div'));
+        chart.draw(data, options);
+      }
+
+      // Chart 3: Column Chart (Alternative to Bar Chart)
+      function drawColumnChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Category', 'Rural Hospitals (%)', 'Non-Rural Hospitals (%)'],
+          ['ER Visits', 30, 43],
+          ['Clinic Visits', 151, 37],
+          ['Home Health Visits', -70, -54],
+          ['Referred O/P Visits', -14, -10],
+          ['I/P Surgeries', -65, -25],
+          ['O/P Surgeries', -42, -6],
+          ['Nursery Days', -44, -48],
+          ['Nursery Discharges', -39, -40]
+        ]);
+
+        var options = {
+          title: 'Percentage Change in Healthcare Utilization (2002-2023)',
+          chartArea: {width: '70%'},
+          vAxis: {title: 'Percentage Change'},
+          hAxis: {title: 'Category'},
+          colors: ['#1b9e77', '#d95f02']
+        };
+
+        var chart = new google.visualization.ColumnChart(document.getElementById('column_chart_div'));
+        chart.draw(data, options);
+      }
+
+      // Chart 4: Line Chart for Purchased Inpatient Days Over Time
+      function drawLineChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Year', 'Rural Hospitals (%)', 'Non-Rural Hospitals (%)'],
+          [2002, 650, 238458],
+          [2007, 4, 227300],
+          [2012, 1552, 230145],
+          [2017, 1136, 335976],
+          [2023, 53032, 433439]
+        ]);
+
+        var options = {
+          title: 'Purchased Inpatient Days Trend (2002-2023)',
+          curveType: 'function',
+          legend: {position: 'bottom'},
+          vAxis: {title: 'Purchased Inpatient Days'},
+          hAxis: {title: 'Year'},
+          colors: ['blue', 'orange']
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('line_chart_div'));
+        chart.draw(data, options);
+      }
+
+      // Chart 5: Percentage Change Over 5 Years (Fixed)
+      function drawPercentageChangeLineChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Period', 'Rural Hospitals (%)', 'Non-Rural Hospitals (%)'],
+          ['2002-2007', -99.38, -4.68],
+          ['2007-2012', 38700, 1.25],
+          ['2012-2017', -26.80, 45.98],
+          ['2017-2023', 4568.31, 29.00]
+        ]);
+
+        var options = {
+          title: 'Percentage Change in Purchased Inpatient Days (Every 5 Years)',
+          curveType: 'function',
+          legend: {position: 'bottom'},
+          vAxis: {title: 'Percentage Change (%)'},
+          hAxis: {title: 'Period'},
+          colors: ['#1b9e77', '#d95f02']
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('percentage_change_chart_div'));
+        chart.draw(data, options);
+      }
+
+      // Table for Data
+      function drawDataTable() {
+        var data = google.visualization.arrayToDataTable([
+          ['Period', 'Rural Hospitals (Purchased I/P Days)', 'Non-Rural Hospitals (Purchased I/P Days)', '% Change Rural', '% Change Non-Rural'],
+          ['2002-2007', 4, 227300, -99.38, -4.68],
+          ['2007-2012', 1552, 230145, 38700, 1.25],
+          ['2012-2017', 1136, 335976, -26.80, 45.98],
+          ['2017-2023', 53032, 433439, 4568.31, 29.00]
+        ]);
+
+        var table = new google.visualization.Table(document.getElementById('data_table_div'));
+        table.draw(data, {showRowNumber: true, width: '100%', height: 'auto'});
+      }
+    </script>
+  </head>
+  <body>
+    <div class="container">
+        <h1>Rural vs. Non-Rural Hospital Utilization Analysis</h1>
+        <section class="content">
+            <p>For the utilization data, rural hospitals and non-rural hospitals have exhibited similar overall trends. From 2002 to 2023, ER Visits, Clinic Visits, and Purchased Inpatient Days have all increased, but to varying degrees. As shown in the table highlighted by the green color, ER visits have risen by 43% in non-rural hospitals and 30% in rural hospitals, and clinic visits have increased by 30% in non-rural hospitals and 151% in rural hospitals. The more than double increase in clinic visits suggests that rural hospitals may be relying more heavily on outpatient and urgent care services.</p>
+            
+            <p>The most noticeable change is the 80,059% surge in purchased inpatient days for rural hospitals, compared to just an 80% increase for non-rural hospitals. This means that many rural hospitals are transferring significantly more patients elsewhere. Two possible explanations for this shift are:</p>
+            <ul>
+                <li><strong>Resource limitations:</strong> Rural hospitals may lack the necessary resources, such as beds, staff, or facilities, to accommodate inpatient care.</li>
+                <li><strong>Mismatched demand:</strong> There may be many patients needing inpatient care at rural hospitals, but these hospitals cannot meet the demand.</li>
+            </ul>
+            
+            <p>This huge increase in purchased inpatient days aligns with the 151% rise in clinic visits, which reinforces the idea that rural hospitals are shifting their focus from inpatient to outpatient care.</p>
+            
+            <p>On the other hand, surgical volumes have declined, especially in rural hospitals. Inpatient surgeries have dropped by 65%, and outpatient surgeries by 42%, suggesting that patients at rural hospitals have more limited access to surgeries. This further supports the assumption that rural hospitals are struggling to meet inpatient care needs. Additionally, home health visits have declined significantly (-54% in non-rural hospitals, -70% in rural hospitals), which may indicate a reduced demand for in-home care.</p>
+            
+            <p>Rural and non-rural hospitals also exhibit similar trends in maternal care services, with both nursery days and nursery discharges declining significantly. This suggests either lower birth rates or the consolidation of labor and delivery services into fewer hospitals.</p>
+            
+            <p>Overall, the utilization data suggests that rural hospitals are increasingly relying on outpatient and urgent care services, while patients in rural areas face greater limitations in accessing healthcare resources, such as maternal care, surgeries, and inpatient care.</p>
+        </section>
+    </div>
+
+    <h2>Graph Options to Choose:</h2>
+    <div id="bar_chart_div" style="width: 900px; height: 500px;"></div>
+    <div id="purchased_ip_chart_div" style="width: 900px; height: 500px;"></div>
+    <div id="column_chart_div" style="width: 900px; height: 500px;"></div>
+    <div id="line_chart_div" style="width: 900px; height: 500px;"></div>
+    <div id="percentage_change_chart_div" style="width: 900px; height: 500px;"></div>
+    <div id="data_table_div" style="width: 1000px; height: auto;"></div>
+  </body>
+</html>
