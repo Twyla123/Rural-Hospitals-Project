@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .content {
+            line-height: 1.6;
+            font-size: 18px;
+            color: #444;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 8px;
+        }
+
+        /* Table Styling */
+        #table_div {
+            width: 100%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+
+        .google-visualization-table-table {
+            width: 100% !important;
+            border-collapse: collapse !important;
+        }
+
+        .google-visualization-table-th {
+            background: #333 !important;
+            color: white !important;
+            font-weight: bold !important;
+            text-align: center !important;
+            padding: 12px !important;
+            font-size: 16px !important;
+        }
+
+        .google-visualization-table-td {
+            padding: 10px !important;
+            border: 1px solid #ddd !important;
+            text-align: center !important;
+            font-size: 14px !important;
+        }
+
+        .google-visualization-table-tr:nth-child(even) {
+            background-color: #f9f9f9 !important;
+        }
+
+        .google-visualization-table-tr:hover {
+            background-color: #f1f1f1 !important;
+        }
+
+    </style>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bed Analysis</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script type="text/javascript">
+      // Load Google Charts
+      google.charts.load('current', {packages: ['corechart', 'table']});
+      google.charts.setOnLoadCallback(drawAllCharts);
+
+      function drawAllCharts() {
+          drawChart();
+          drawTable();
+      }
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Category', '% Change of Non-Rural Hospitals', '% Change of Rural Hospitals'],
+          ['Total Hospitals', -9, -21],
+          ['Total Licensed Beds', -3, -21],
+          ['General Acute Beds', 2, -18],
+          ['Psychiatric Beds', -1, -100],
+          ['Rehabilitation Beds', 15, 0],
+          ['Long-Term Care Beds', -45, -24],
+          ['Chemical Dependency & Other Beds', -20, 0]
+        ]);
+
+        var options = {
+          title: 'Percentage Change of Beds in Rural vs. Non-Rural Hospitals (2002-2023) by Category',
+          hAxis: { title: 'Category' },
+          vAxis: { title: 'Percentage Change', minValue: -100, maxValue: 20 },
+          chartArea: {width: '70%'},
+          bars: 'vertical',
+          legend: { position: 'bottom' },
+          colors: ['#1b9e77', '#d95f02']
+        };
+
+        var chart = new google.visualization.ColumnChart(document.getElementById('bed_chart_div'));
+        chart.draw(data, options);
+      }
+
+      function drawTable() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Category');
+        data.addColumn('number', 'Non-Rural Hospitals (2002)');
+        data.addColumn('number', 'Non-Rural Hospitals (2023)');
+        data.addColumn('string', '% Change of Non-Rural Hospitals');
+        data.addColumn('number', 'Rural Hospitals (2002)');
+        data.addColumn('number', 'Rural Hospitals (2023)');
+        data.addColumn('string', '% Change of Rural Hospitals');
+        
+data.addRows([
+  ['<div style="width:250px; white-space:normal;">Total Hospitals</div>', 340, 309, '-9%', 73, 58, '-21%'],
+  ['<div style="width:250px; white-space:normal;">Total Licensed Beds</div>', 76260, 73937, '-3%', 4898, 3863, '-21%'],
+  ['<div style="width:250px; white-space:normal;">General Acute Beds</div>', 58329, 59353, '2%', 2885, 2359, '-18%'],
+  ['<div style="width:250px; white-space:normal;">Psychiatric Beds</div>', 6682, 6610, '-1%', 32, 0, '-100%'],
+  ['<div style="width:250px; white-space:normal;">Rehabilitation Beds</div>', 2444, 2814, '15%', 10, 10, '0%'],
+  ['<div style="width:250px; white-space:normal;">Long-Term Care Beds</div>', 7659, 4239, '-45%', 1971, 1494, '-24%'],
+  ['<div style="width:250px; white-space:normal;">Chemical Dependency & Other Beds</div>', 1146, 921, '-20%', 0, 0, 'N/A']
+]);
+        
+        var table = new google.visualization.Table(document.getElementById('table_div'));
+
+        var options = {
+            showRowNumber: true, 
+            width: '100%', 
+            height: 'auto',
+            allowHtml: true,
+            cssClassNames: {
+                headerRow: 'google-visualization-table-th',
+                tableRow: 'google-visualization-table-tr',
+                oddTableRow: 'google-visualization-table-tr-odd',
+                hoverTableRow: 'google-visualization-table-tr-hover'
+            }
+        };
+
+        table.draw(data, options);
+      }
+    </script>
+
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="utilization.html">Utilization Data</a></li>
+            <li><a href="bed.html">Beds Analysis</a></li>
+            <li><a href="conclusion.html">Conclusion</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Bed Analysis in Rural vs. Non-Rural Hospitals</h1>
+        
+        <section class="content">
+            <p>Similarly, rural hospitals have experienced a larger decrease in the number of beds (-21%), whereas non-rural hospitals only experienced about a 3% reduction in total licensed beds. In the chart, in addition to the complete disappearance of psychiatric beds, another large and obvious decrease is in long-term care beds. For both types of hospitals, this category saw the most significant decline, with rural hospitals experiencing a 24% decrease and non-rural hospitals experiencing a 45% decrease.</p>
+            
+            <p>Another critical observation is the continued absence of chemical dependency beds in rural hospitals. While non-rural hospitals experienced a 20% decline in these beds, rural hospitals had none in either year, which implies the long-standing gap in addiction treatment services. This, along with the complete loss of psychiatric beds in rural hospitals, suggests an increasing disparity in mental health care accessibility between rural and urban areas.</p>
+            
+            <p>Beyond these gaps, rehabilitation beds stand out as the only category that saw growth, but only in non-rural hospitals, which experienced a 15% increase. In contrast, rural hospitals saw no change in rehabilitation bed capacity, which might highlight a potential gap in access to post-care services. Similarly, general acute beds saw a slight 2% increase in non-rural hospitals, while rural hospitals faced an 18% decline, which could be related to the closure of rural hospitals over the years (-21%).</p>
+            
+            <p>Overall, although there is a trend of overall decline in total hospitals (-9% in non-rural and -21% in rural), rural hospitals and communities have been much more negatively affected in terms of a higher number of closures and a larger reduction in almost all categories of beds. This is alarming because, without beds and other resources, rural populations might face much more limited access to essential healthcare services.</p>
+        </section>
+        <h2>Bed Analysis Chart</h2>
+        <div id="bed_chart_div"></div>
+
+        <h2>Comparison of Rural and Non-Rural Hospitals (2002 vs. 2023)</h2>
+        <div id="table_div"></div>
+    </div>
+</body>
+</html>
